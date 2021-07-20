@@ -15,6 +15,7 @@ import {
   ORDER_PAY_RESET,
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants';
+import { CART_ITEMS_RESET } from '../constants/cartConstants';
 
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
@@ -59,6 +60,8 @@ const OrderScreen = ({ match, history }) => {
       script.async = true;
       script.onload = () => {
         setSdkReady(true);
+        localStorage.setItem('cartItems', []);
+        dispatch({ type: CART_ITEMS_RESET });
       };
       document.body.appendChild(script);
     };
